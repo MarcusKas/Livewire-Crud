@@ -68,5 +68,6 @@ class Post extends Component
         $validatedData = $this->validate();
         $post = ModelsPost::find($post_id);
         $post->update($validatedData);
+        return redirect()->route('post');
     }
 }

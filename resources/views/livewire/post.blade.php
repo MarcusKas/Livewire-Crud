@@ -8,7 +8,7 @@
 
                     <div class="card-body">
 
-                        @if (!$title == null)
+                        @isset($post_id)
                             <form wire:submit.prevent="Updatepost({{ $post_id }})">
                                 <div class="mb-3">
                                     <label id="id_label" for="id"></label>
@@ -19,24 +19,25 @@
 
                                     <input id="title" name="title" type="text" wire:model="title"
                                         class="form-control @error('title')border-danger
-                                    
-                                @enderror" />
+                            
+                        @enderror" />
                                     @error('title')
                                         <p class="text-danger text-bold ">{{ $message }}</p>
                                     @enderror
                                 </div>
 
-                                <textarea
-                                    class="form-control mb-3 @error('body')border-danger
-                                
-                            @enderror"
+                                <textarea class="form-control mb-3 @error('body')border-danger
+                        
+                    @enderror"
                                     name="body" id="" cols="30" rows="5" wire:model="body">
-                            </textarea> @error('body')
+                    </textarea> @error('body')
                                     <p class="text-danger text-bold ">{{ $message }}</p>
                                 @enderror
                                 <button class="btn btn-success btn-sm" type="submit">Update Post</button>
                             </form>
-                        @else
+                        @endisset
+
+                        @empty($post_id)
                             <div class="card-header"> Create New Post</div>
 
                             <form wire:submit.prevent="createpost">
@@ -62,7 +63,8 @@
                                 @enderror
                                 <button class="btn btn-success btn-sm" type="submit">Save Post</button>
                             </form>
-                        @endif
+                        @endempty
+
 
 
                     </div>
@@ -101,6 +103,25 @@
             </div>
 
             {{-- update post modal --}}
+            {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ....body
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
 
         </div>
     </div>
